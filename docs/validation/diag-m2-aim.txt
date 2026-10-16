@@ -1,0 +1,35 @@
+=== M2 lunarAimPoint 诊断 ===
+停车周期 5290.9 s   wait=21375.4 s   t_ign=22075.43 s   (粗扫兰伯特 Δv=3204 m/s, v∞E=0.8737)
+
+--- ① 规划路径 integrateSim（solveTLI 用的就是它） ---
+  r=6067.1,2028.6,1462.4  |v|=7.793384
+  ✔ peri=115.95 km  plane=0.0093°  v∞=0.8565  dv=3680 m/s  corr=19.50 m/s  tArr=382075
+
+--- ② 实飞路径 advance(1/60)×warp2000（burnTLI 用的就是它，无 _advanceStopAt） ---
+  r=5990.3,2180.1,1556.7  |v|=7.793514
+  ✘ failed=no-converge  periErr=-109.95  periAlt=1.05  plane=0.0112  vInf=0.8414  corrEq=- m/s  evals=120  tof=359975
+
+--- ②b 实飞 + _advanceStopAt=t_ign ---
+  停在 t=22075.431130 s（目标 22075.431130 s，过冲 0.000000 s）
+
+--- ②b 实飞路径 + _advanceStopAt（精确停在点火点） ---
+  r=6065.9,2030.7,1463.7  |v|=7.793487
+  ✔ peri=117.83 km  plane=0.0302°  v∞=0.8566  dv=3681 m/s  corr=19.61 m/s  tArr=382075
+
+--- 实飞（精确停）vs 规划 状态差 ---
+  |Δr| = 2.8078 km   |Δv| = 3.331 m/s
+
+--- 两条路径的状态差（同一 t_ign） ---
+  |Δr| = 194.2761 km   |Δv| = 231.042 m/s   Δt = 24.569 s
+
+--- ④ 规划态但 tof 少 24 s（t=t_ign+24） ---
+  r=5993.4,2174.5,1553.2  |v|=7.793410
+  ✘ failed=no-converge  periErr=-109.96  periAlt=1.04  plane=0.0119  vInf=0.8413  corrEq=- m/s  evals=121  tof=359976
+
+--- ⑤ startLunarTransfer（实飞精确停状态） ---
+  用时 41479 ms  ok=undefined  failed=no-converge  evals=180（A=60, B=120）
+  T=429.72 s  a=-0.091°  b=-1.112°
+  periAlt=132.33 km  periErr=21.33  plane=0.0134°  vInf=0.8555  corrEq=15.72 m/s  corrImp=168.32 m/s
+  stageA: a=0.137° b=-0.982° T=430.38 s  位置残差 |d|=214.48 km  periAlt=- km
+  arc: T=429.72 s  prop=103347 kg  dvActual=3319 m/s  m0=172826 → m1=69479  steps=1565  exhaustedProp=false
+  seedT=422.08 s  aim.dv=3681 m/s

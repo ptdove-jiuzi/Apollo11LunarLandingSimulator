@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阿波罗11号登月模拟器</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ================= 顶栏 ================= -->
+  <header id="topbar">
+    <div class="brand">
+      <span class="bmk">◈</span>
+      <span class="btxt">APOLLO&nbsp;XI</span>
+      <span class="bsub" data-i18n="brand.sub">登月模拟器</span>
+      <span id="modeBadge" class="modebadge" data-i18n="rp.modeLive">实时模拟</span>
+    </div>
+    <div class="tgroup">
+      <div class="tcell"><label data-i18n="top.met">任务时间 MET</label><b id="met">+00:00:00</b></div>
+      <div class="tcell"><label data-i18n="top.utc">世界时</label><b id="utc">1969-07-16 —</b></div>
+      <div class="tcell"><label data-i18n="top.warp">时间倍率</label><b id="warpTxt">×1</b></div>
+      <div class="tcell"><label data-i18n="top.perf">性能</label><b id="fpsTxt">—</b></div>
+    </div>
+    <div class="tbtns">
+      <button id="btnWarpDown" class="mini">−</button>
+      <button id="btnWarpUp" class="mini">+</button>
+      <button id="btnPlay" class="primary" data-i18n="btn.play">▶ 继续</button>
+      <button id="btnTutorial" data-i18n="btn.tutorial">新手教程</button>
+      <button id="btnLang" data-i18n="btn.lang">EN</button>
+      <button id="btnSave" data-i18n="btn.save">存档</button>
+      <button id="btnLoad" data-i18n="btn.load">读档</button>
+      <button id="btnFinish" data-i18n="btn.finish">评定</button>
+      <button id="btnMissions" data-i18n="btn.missions">选择任务</button>
+    </div>
+  </header>
+
+  <!-- ================= 主体 ================= -->
+  <main>
+
+    <!-- ---------- 左：遥测 ---------- -->
+    <aside id="left" class="panel">
+      <div class="ph"><span data-i18n="panel.telemetry">遥测 TELEMETRY</span><em id="missionTitle">—</em></div>
+      <div class="pbody">
+        <div class="sub" id="missionSub">—</div>
+
+        <div class="grid2">
+          <div class="kv"><label data-i18n="f.primary">主天体</label><b id="tPrimary" data-i18n="body.earth">地球</b></div>
+          <div class="kv"><label data-i18n="f.alt">高度</label><b id="tAlt">—</b></div>
+          <div class="kv"><label data-i18n="f.speed">轨道速度</label><b id="tSpeed">—</b></div>
+          <div class="kv"><label data-i18n="f.vr">垂直速度</label><b id="tVr">—</b></div>
+          <div class="kv"><label data-i18n="f.vh">水平速度</label><b id="tVh">—</b></div>
+          <div class="kv"><label data-i18n="f.fpa">航迹角</label><b id="tFpa">—</b></div>
+          <div class="kv"><label data-i18n="f.apo">远地点</label><b id="tApo">—</b></div>
+          <div class="kv"><label data-i18n="f.per">近地点</label><b id="tPer">—</b></div>
+          <div class="kv"><label data-i18n="f.ecc">偏心率</label><b id="tEcc">—</b></div>
+          <div class="kv"><label data-i18n="f.inc">倾角</label><b id="tInc">—</b></div>
+          <div class="kv"><label data-i18n="f.period">周期</label><b id="tPeriod">—</b></div>
+          <div class="kv"><label data-i18n="f.phase">相位角</label><b id="tPhase">—</b></div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="grid2">
+          <div class="kv"><label data-i18n="f.mass">总质量</label><b id="tMass">—</b></div>
+          <div class="kv"><label data-i18n="f.thrust">推力</label><b id="tThrust">—</b></div>
+          <div class="kv"><label data-i18n="f.accel">加速度</label><b id="tAccel">—</b></div>
+          <div class="kv"><label data-i18n="f.dv">已用 Δv</label><b id="tDv">—</b></div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="grid2">
+          <div class="kv"><label data-i18n="f.moonDist">距月球</label><b id="tMoonDist">—</b></div>
+          <div class="kv"><label data-i18n="f.moonPhase">月相照度</label><b id="tMoonPhase">—</b></div>
+          <div class="kv"><label data-i18n="f.sunElev">着陆点日照仰角</label><b id="tSunElev">—</b></div>
+          <div class="kv"><label data-i18n="f.siteDist">到静海基地</label><b id="tSiteDist">—</b></div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="sechead" data-i18n="sec.stages">推进级 / 推进剂</div>
+        <div id="stageList" class="stages"></div>
+      </div>
+    </aside>
+
+    <!-- ---------- 中：轨道视图 ---------- -->
+    <section id="center">
+      <div id="viewbar">
+        <button class="vtab on" data-view="system" data-i18n="view.system">地月全景</button>
+        <button class="vtab" data-view="earth" data-i18n="view.earth">近地</button>
+        <button class="vtab" data-view="moon" data-i18n="view.moon">近月</button>
+        <button class="vtab" data-view="craft" data-i18n="view.craft">跟随</button>
+        <div class="vspacer"></div>
+        <span class="clabel" data-i18n="view.mode">视角模式</span>
+        <button id="btnMode3d" class="vtab mode on" data-i18n="view.mode3d" title="三维可旋转视角：左键拖动 = 旋转，滚轮缩放">3D</button>
+        <button id="btnMode2d" class="vtab mode" data-i18n="view.mode2d" title="2D 轨道面俯视：视线垂直于当前轨道面，轨道画成正圆 / 正椭圆，拖动 = 平移">2D</button>
+        <div class="vspacer"></div>
+        <button id="btnPredict" class="vtab pred" data-i18n="btn.predictOff" title="按当前速度和引力实时外推飞船接下来会飞到哪">轨道预演：关</button>
+        <div class="vspacer"></div>
+        <span class="vhint" data-i18n="view.hint">左键拖动旋转（2D 下为平移）· 滚轮缩放 · 双击复位</span>
+      </div>
+      <div id="skywrap">
+        <canvas id="sky"></canvas>
+        <!-- 自动演示横幅 -->
+        <div id="demoBar">
+          <span class="dbdot"></span>
+          <span class="dblabel" data-i18n="demo.label">自动演示</span>
+          <span class="dbstep" id="demoText"></span>
+          <span class="dbact" id="demoAct"></span>
+          <span class="dbnote" id="demoNote"></span>
+          <span class="dbprog" id="demoProg"></span>
+          <span class="dbwarp" id="demoWarp"></span>
+          <button id="demoStop" class="mini" data-i18n="demo.stop">停止演示</button>
+        </div>
+        <!-- 离线轨迹回放条（自动演示 = 固定样本回放，不做实时物理） -->
+        <div id="replayBar">
+          <span class="rbdot"></span>
+          <span class="dblabel" data-i18n="rp.label">轨迹回放</span>
+          <button id="rpPlay" class="mini" title="播放 / 暂停">▶</button>
+          <button id="rpStop" class="mini" title="停止（跳到末尾）">⏹</button>
+          <button id="rpReplay" class="mini" title="从头重播">↺</button>
+          <button id="rpSpeedDown" class="mini">−</button>
+          <span class="dbwarp" id="rpSpeedTxt">×100</span>
+          <button id="rpSpeedUp" class="mini">+</button>
+          <span class="dbprog" id="rpTime">T+0:00:00</span>
+          <input type="range" id="rpSeek" min="0" max="1000" value="0" title="拖动跳转（直接跳到样本时间）">
+          <button id="rpExit" class="mini" data-i18n="rp.exit">退出回放</button>
+        </div>
+      </div>
+
+      <div id="ctrlbar">
+        <div class="cgroup">
+          <span class="clabel" data-i18n="grp.attitude">姿态</span>
+          <button class="mbtn" data-mode="launch" data-i18n="mode.launch">上升制导</button>
+          <button class="mbtn on" data-mode="prograde" data-i18n="mode.prograde">顺行</button>
+          <button class="mbtn" data-mode="retrograde" data-i18n="mode.retrograde">逆行</button>
+          <button class="mbtn" data-mode="radial" data-i18n="mode.radial">径向外</button>
+          <button class="mbtn" data-mode="antiradial" data-i18n="mode.antiradial">径向内</button>
+          <button class="mbtn" data-mode="normal" data-i18n="mode.normal">法向</button>
+          <button class="mbtn" data-mode="antinormal" data-i18n="mode.antinormal">反法向</button>
+        </div>
+        <div class="cgroup">
+          <span class="clabel" data-i18n="grp.throttle">油门</span>
+          <input type="range" id="thr" min="0" max="100" value="0">
+          <span class="cval" id="thrLabel">—</span>
+          <button id="btnCut" class="mini" data-i18n="btn.cut">关机</button>
+          <button id="btnFull" class="mini" data-i18n="btn.full">全推力</button>
+        </div>
+        <div class="cgroup">
+          <span class="clabel" data-i18n="grp.action">动作</span>
+          <button id="btnAuto" data-i18n="btn.auto">自动驾驶</button>
+          <button id="btnStage" data-i18n="btn.stage">分级 / 抛离</button>
+          <button id="btnUndock" data-i18n="btn.undock">分离登月舱</button>
+          <button id="btnSwitch" data-i18n="btn.switch">切换飞行器</button>
+          <button id="btnDock" data-i18n="btn.dock">对接登月舱</button>
+        </div>
+        <div class="cgroup">
+          <span class="clabel" data-i18n="grp.mode">当前模式</span><span class="cval" id="modeLabel">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 右：DSKY + AGC ---------- -->
+    <aside id="right" class="panel">
+      <div class="ph"><span>DSKY</span><em id="agcState" data-i18n="dsky.agcReady">AGC 运行中 · 已就绪</em></div>
+      <div class="pbody dskywrap">
+
+        <div class="dsky" id="dskyBox">
+          <div class="drow">
+            <div class="dblk"><span class="dlab">PROG</span><span class="dval" id="dProg">--</span></div>
+            <div class="dblk"><span class="dlab">VERB</span><span class="dval" id="dVerb">--</span></div>
+            <div class="dblk"><span class="dlab">NOUN</span><span class="dval" id="dNoun">--</span></div>
+          </div>
+          <div class="dregs">
+            <div class="dblk wide"><span class="dlab">R1</span><span class="dval" id="dR1">  ----</span></div>
+            <div class="dblk wide"><span class="dlab">R2</span><span class="dval" id="dR2">  ----</span></div>
+            <div class="dblk wide"><span class="dlab">R3</span><span class="dval" id="dR3">  ----</span></div>
+          </div>
+          <div class="dlamps" id="dLamps"></div>
+          <div class="dkeys">
+            <button class="dkey" data-key="VERB">VERB</button>
+            <button class="dkey" data-key="NOUN">NOUN</button>
+            <button class="dkey" data-key="+">+</button>
+            <button class="dkey" data-key="7">7</button><button class="dkey" data-key="8">8</button>
+            <button class="dkey" data-key="9">9</button><button class="dkey" data-key="CLR">CLR</button>
+            <button class="dkey" data-key="4">4</button><button class="dkey" data-key="5">5</button>
+            <button class="dkey" data-key="6">6</button><button class="dkey" data-key="PRO">PRO</button>
+            <button class="dkey" data-key="1">1</button><button class="dkey" data-key="2">2</button>
+            <button class="dkey" data-key="3">3</button><button class="dkey" data-key="KEY REL">KEY REL</button>
+            <button class="dkey" data-key="0">0</button><button class="dkey" data-key="ENTER">ENTR</button>
+            <button class="dkey" data-key="RSET">RSET</button>
+          </div>
+        </div>
+
+        <div class="dskyhelp" data-i18n="dsky.help">用法：VERB → 两位数字 → NOUN → 两位数字 → ENTR 提交；CLR 清除键入；空按 ENTR 会亮 OPR ERR。例：V16 N68 E 显示时间。数字可直接键入 R1（± 改符号）。程序写显示通道会接管寄存器。</div>
+        <div class="agcstat">
+          <div class="kv"><label data-i18n="dsky.instructions">已执行指令</label><b id="agcCount">0</b></div>
+          <div class="kv"><label data-i18n="dsky.cycles">机器周期</label><b id="agcCycles">0</b></div>
+        </div>
+        <div class="sechead" data-i18n="dsky.recent">最近执行的指令</div>
+        <pre id="agcTrace" class="mono small trace" data-i18n="dsky.none">（未载入程序）</pre>
+
+      </div>
+    </aside>
+  </main>
+
+  <!-- ================= 底部页签 ================= -->
+  <footer id="bottom">
+    <nav id="tabs">
+      <button class="tab on" data-tab="log" data-i18n="tab.log">飞行日志</button>
+      <button class="tab" data-tab="calc" data-i18n="tab.calc">轨道计算器</button>
+      <button class="tab" data-tab="agc" data-i18n="tab.agc">AGC 汇编终端</button>
+      <button class="tab" data-tab="down" data-i18n="tab.down">下传遥测</button>
+      <button class="tab" data-tab="time" data-i18n="tab.time">任务时序</button>
+      <button class="tab" data-tab="guide" data-i18n="tab.guide">制导手册</button>
+      <button class="tab" data-tab="test" data-i18n="tab.test">系统自检</button>
+    </nav>
+    <div id="tabbody">
+
+      <div class="tabpage on" id="tab-log">
+        <div id="logBox" class="logbox"></div>
+      </div>
+
+      <div class="tabpage" id="tab-calc">
+        <div class="calcwrap">
+          <div class="calcctl">
+            <div class="row">
+              <label data-i18n="calc.tof">转移飞行时间</label>
+              <input id="calcTof" type="number" value="72" step="1" min="1" max="240">
+              <span class="unit" data-i18n="calc.hour">小时</span>
+            </div>
+            <div class="row">
+              <label data-i18n="calc.targetAlt">入轨目标高度</label>
+              <input id="calcTargetAlt" type="number" value="185" step="5" min="120" max="600">
+              <span class="unit" data-i18n="calc.km">km</span>
+            </div>
+            <button id="btnCalc" class="primary" data-i18n="btn.calc">计算轨道</button>
+            <button id="btnTLI" data-i18n="btn.tli">执行 TLI 点火</button>
+            <button id="btnCirc" data-i18n="btn.circ">入轨圆化制导</button>
+            <button id="btnLand" data-i18n="btn.land">动力下降制导</button>
+            <button id="btnRend" data-i18n="btn.rend">交会辅助点火</button>
+            <div class="note" data-i18n="calc.note"></div>
+          </div>
+          <pre id="calcOut" class="mono calcout" data-i18n="calc.hint"></pre>
+        </div>
+      </div>
+
+      <div class="tabpage" id="tab-agc">
+        <div class="agcwrap">
+          <div class="agcedit">
+            <div class="row">
+              <label data-i18n="agc.program">示例程序</label>
+              <select id="progSelect">
+                <option value="dsky-demo.agc">dsky-demo.agc</option>
+                <option value="attitude-hold.agc">attitude-hold.agc</option>
+                <option value="lambert.agc">lambert.agc</option>
+              </select>
+              <button id="btnAgcLoad" data-i18n="btn.load2">载入</button>
+              <button id="btnAgcReset" data-i18n="btn.agcReset">AGC 复位</button>
+            </div>
+            <textarea id="agcSrc" spellcheck="false">SETLOC  5400
+        BANK    2
+
+START   CAF     KV
+        EXTEND
+        WRITE   21
+        CAF     KN
+        EXTEND
+        WRITE   22
+        TCF     START
+
+SETLOC  5700
+        BANK    2
+KV      DEC     11
+KN      DEC     36
+</textarea>
+            <div class="row">
+              <button id="btnAgcAsm" class="primary" data-i18n="btn.agcAsm">汇编并装载到 AGC</button>
+              <button id="btnAgcRun">⏸</button>
+              <label class="filelike"><span data-i18n="agc.file">载入 .agc 文件</span><input type="file" id="fileInput" accept=".agc,.asm,.txt"></label>
+            </div>
+          </div>
+          <pre id="asmOut" class="mono asmout" data-i18n="agc.outHint">汇编输出将显示在这里。</pre>
+        </div>
+      </div>
+
+      <div class="tabpage" id="tab-down">
+        <div class="agcwrap">
+          <div class="agcedit">
+            <div class="sechead" data-i18n="down.channels">AGC 下传通道（最近写入）</div>
+            <pre id="downOut" class="mono asmout">—</pre>
+          </div>
+          <div class="agcedit">
+            <div class="sechead" data-i18n="down.events">DSKY 键盘与告警</div>
+            <pre id="downLog" class="mono asmout">—</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpage" id="tab-time">
+        <div class="timewrap">
+          <div class="sechead" data-i18n="time.head">Apollo 11 真实任务时序（GET，自点火起飞）</div>
+          <table id="timeTable" class="timetable">
+            <thead><tr>
+              <th data-i18n="time.th1">GET</th>
+              <th data-i18n="time.th2">事件</th>
+              <th data-i18n="time.th3">说明</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tabpage" id="tab-guide">
+        <div class="guidewrap">
+          <div class="sechead" data-i18n="guide.head">制导手册</div>
+          <div id="guideBody" class="guideman"></div>
+        </div>
+      </div>
+
+      <div class="tabpage" id="tab-test">
+        <div class="agcwrap">
+          <div class="agcedit">
+            <div class="sechead" data-i18n="test.head">系统自检</div>
+            <button id="btnSelfTest" class="primary" data-i18n="btn.retest">重新运行自检</button>
+            <pre id="selfTestOut" class="mono asmout">—</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</div>
+
+<!-- ================= 首次运行提示（可忽略，不自动播放教程） ================= -->
+<div id="firstRunHint" class="frh">
+  <span class="fricon">◎</span>
+  <span class="frtext" data-i18n="hint.first">第一次玩？跟着教程走一遍，5 分钟从点火到溅落。</span>
+  <button id="frhStart" class="primary" data-i18n="hint.start">开始新手教程</button>
+  <button id="frhSkip" class="mini" data-i18n="hint.skip">先自己看看</button>
+</div>
+
+<pre id="diagout" style="display:none"></pre>
+
+<!-- ================= 任务选择 ================= -->
+<div id="modalMissions" class="modal">
+  <div class="mbox wide">
+    <div class="mhead">
+      <h2 data-i18n="mis.title">选择任务</h2>
+      <button id="closeMissions" class="x">×</button>
+    </div>
+    <p class="mintro" data-i18n="mis.intro"></p>
+    <div id="missionList" class="mlist"></div>
+  </div>
+</div>
+
+<!-- ================= 评定结果 ================= -->
+<div id="modalResult" class="modal">
+  <div class="mbox">
+    <div class="mhead"><h2 data-i18n="res.title">任务评定</h2><button id="closeResult" class="x">×</button></div>
+    <div id="resultBody"></div>
+  </div>
+</div>
+
+<script src="js/00-constants.js"></script>
+<script src="js/01-math.js"></script>
+<script src="js/02-astro.js"></script>
+<script src="js/03-physics.js"></script>
+<script src="js/04-agc.js"></script>
+<script src="js/05-asm.js"></script>
+<script src="js/06-render.js"></script>
+<script src="js/07-app.js"></script>
+<script src="js/08-programs.js"></script>
+<script src="js/09-i18n.js"></script>
+<script src="js/10-tutorial.js"></script>
+<script src="js/11-demo.js"></script>
+<script src="js/12-replay.js"></script>
+<script>
+  window.__APOLLO_DIAG__ = '';
+  window.__APOLLO_DIAG_LINES__ = [];
+  function diag(kind, text) {
+    window.__APOLLO_DIAG_LINES__.push('[' + kind + '] ' + text);
+    window.__APOLLO_DIAG__ = window.__APOLLO_DIAG_LINES__.join('\n');
+    var _dc = document.getElementById('diagout'); if (_dc) _dc.textContent = window.__APOLLO_DIAG__;
+    try { if (window.console) console.log('[diag]', kind, text); } catch (e) {}
+    try {
+      if (window.pywebview && window.pywebview.api && window.pywebview.api.ui_log) {
+        window.pywebview.api.ui_log(kind, String(text));
+      }
+    } catch (e) {}
+  }
+  window.onerror = function (msg, src, line, col, err) {
+    diag('ERROR', msg + ' @ ' + (src || '?') + ':' + line + ':' + col +
+      (err && err.stack ? ' | ' + err.stack : ''));
+  };
+  window.addEventListener('unhandledrejection', function (e) {
+    diag('REJECT', (e.reason && e.reason.message) || String(e.reason));
+  });
+  window.addEventListener('DOMContentLoaded', function () {
+    diag('START', 'DOMContentLoaded，脚本已加载：' + Object.keys(window.APL || {}).join(','));
+    try {
+      APLApp.bootstrap();
+      diag('BOOTSTRAP', '初始化完成');
+      setTimeout(function () {
+        try {
+          var n = document.querySelectorAll('#missionList .mcard').length;
+          diag('READY', '任务卡片 ' + n + ' 张；DSKY 按键 ' +
+            document.querySelectorAll('.dkey').length + ' 个；教程步骤 ' +
+            (window.APL && APL.TUTORIAL_STEPS ? APL.TUTORIAL_STEPS.length : 0) + ' 步');
+          var w2 = new APL.Physics.World();
+          w2.running = true;
+          var site0 = APL.Astro.siteState(0, APL.SITE.lat, APL.SITE.lon, 0.02);
+          var c2 = new APL.Physics.Craft({ id: 'SMOKE', r: site0.r, v: site0.v, mode: 'launch' });
+          w2.addCraft(c2);
+          c2.attitude.mode = 'launch';
+          c2.throttleCmd = 1;
+          w2.warp = 100;
+          for (var i = 0; i < 700; i++) w2.advance(1 / 60);
+          // 注意：这里刻意不调用 renderer.draw —— 否则一打开就会在画布上看到
+          // 一枚正在爬升的火箭，像是"已经进入游戏"。启动时应显示引导页。
+          var orb = c2.orbitRelative('EARTH', w2);
+          diag('SMOKE', 'T+' + w2.t.toFixed(0) + 's 高度=' +
+            APL.Physics.earthAltitude(c2.r).toFixed(1) + 'km 速度=' +
+            APL.V.mag(c2.v).toFixed(3) + 'km/s 远地点=' +
+            (orb.apoapsis - APL.BODY.EARTH.radius).toFixed(1) + 'km 近地点=' +
+            (orb.periapsis - APL.BODY.EARTH.radius).toFixed(1) + 'km 倾角=' +
+            (orb.i * APL.M.R2D).toFixed(3) + '° 余重=' + (c2.mass() / 1000).toFixed(1) + 't');
+          var ag = new APL.AGC();
+          var as = APL.Asm.assemble('SETLOC 5400\n BANK 2\nSTART CAF K1\n EXTEND\n WRITE 21\n TCF START\nSETLOC 5700\n BANK 2\nK1 DEC 42\n');
+          ag.mem.fixed[2].set(as.mem.subarray(2048, 3072));
+          ag.FB = 2; ag._curBank = 2;
+          var ent = as.symbols['START'].value;
+          ag.Z = ent; ag.NextZ = ent; ag.standby = false;
+          ag.run(4000);
+          diag('AGC', '汇编=' + (as.ok ? '成功' : '失败') + ' DSKY PROG=' + ag.dsky.prog +
+            ' 指令=' + ag.instructions);
+          diag('I18N', '语言=' + APL.getLang() + ' 词条=' +
+            Object.keys(APL.I18N.zh).length + '/' + Object.keys(APL.I18N.en).length +
+            ' 界面已标记节点=' + document.querySelectorAll('[data-i18n]').length);
+          // ⚠ 自检切语言后会**恢复原来的语言**，不能硬写回 'zh'：
+          //   原来这两行每次启动都往飞行日志里塞两条"语言已切换"分隔线
+          //   （用户看到的是开机就有两行莫名其妙的记录），并且会把
+          //   ?lang=en 或玩家上次选的语言强行改回中文。
+          //   __silentLangSet 让 07-app.js 的语言监听器在自检期间不写日志。
+          var lang0 = APL.getLang();
+          APL.__silentLangSet = 1;
+          try {
+            APL.setLang('en');
+            diag('I18N-EN', '切到英文后 顶部按钮 = "' + document.getElementById('btnPlay').textContent +
+              '" / 页签 = "' + document.querySelector('.tab').textContent + '"');
+            APL.setLang(lang0);
+          } finally { APL.__silentLangSet = 0; }
+          APL.Tutorial.start(0);
+          diag('TUTORIAL', '教程第 1 步标题 = "' +
+            document.getElementById('tutTitle').textContent + '"');
+          APL.Tutorial.stop();
+          diag('DONE', '全部自检通过，界面可用');
+        } catch (e2) {
+          diag('FATAL', (e2 && e2.stack) || String(e2));
+        }
+      }, 900);
+    } catch (e) {
+      diag('FATAL', (e && e.stack) || String(e));
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# build / dist / caches（构建产物与缓存，不入库；发布用的 EXE 放在 download/）
+build/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+
+# 本地运行产生的用户数据（界面日志、单实例锁文件等）
+ui.log
+startup.log
+instance.json
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 临时文件（离线生成/诊断时的中间产物）
+.tmp/
+*.bak
+
+# 自动生成的探针页（由 src/tools/make_*_probe.js 生成，不入库）
+src/apollo11/webdata/_*.html

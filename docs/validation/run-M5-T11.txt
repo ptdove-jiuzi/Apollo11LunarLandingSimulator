@@ -1,0 +1,24 @@
+T+763 [sys] [WIN] tof=100h k=78 wait=4127s dv=3145m/s vInfE=0.872 score=3.1470
+T+763 [sys] [WIN] tof=100h k=178 wait=9418s dv=3149m/s vInfE=0.873 score=3.1518
+T+763 [sys] [WIN] tof=96h k=277 wait=14656s dv=3143m/s vInfE=0.892 score=3.1648
+T+763 [sys] [WIN] tof=100h k=279 wait=14762s dv=3163m/s vInfE=0.873 score=3.1664
+T+763 [sys] [WIN] tof=96h k=378 wait=20000s dv=3144m/s vInfE=0.892 score=3.1667
+T+763 [sys] [WIN] tof=96h k=177 wait=9365s dv=3148m/s vInfE=0.892 score=3.1694
+T+763 [sys] [WIN] tof=100h k=379 wait=20053s dv=3167m/s vInfE=0.873 score=3.1705
+T+763 [sys] [WIN] tof=96h k=478 wait=25291s dv=3153m/s vInfE=0.893 score=3.1758
+T+763 [sys] [WIN] tof=96h k=77 wait=4074s dv=3156m/s vInfE=0.892 score=3.1777
+T+763 [sys] [WIN] tof=104h k=79 wait=4180s dv=3169m/s vInfE=0.858 score=3.1809
+T+763 [sys] 转移窗口候选 100h k=78 复核失败：no-converge periErr=204.4 peri=315.4 面差=0.829 v∞=0.825 corr=17.3 evals=122
+T+763 [sys] 转移窗口候选 100h k=178 复核失败：no-converge periErr=51.7 peri=162.7 面差=0.472 v∞=0.827 corr=17.6 evals=21
+T+763 [sys] 转移窗口候选 96h k=277 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.011 v∞=0.858 corr=17.2 evals=120
+T+763 [sys] 转移窗口候选 96h k=378 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.000 v∞=0.870 corr=12.7 evals=47
+T+763 [sys] 转移窗口候选 96h k=177 复核失败：no-converge periErr=36.0 peri=147.0 面差=0.609 v∞=0.844 corr=18.3 evals=60
+T+763 [sys] 转移窗口候选 100h k=379 复核失败：no-converge periErr=-6.0 peri=105.0 面差=0.107 v∞=0.855 corr=13.0 evals=121
+T+763 [sys] 转移窗口候选 96h k=478 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.020 v∞=0.858 corr=13.2 evals=122
+T+763 [sys] 转移窗口候选 96h k=77 复核失败：no-converge periErr=108.2 peri=219.2 面差=0.824 v∞=0.843 corr=19.1 evals=34
+T+763 [sys] 转移窗口候选 104h k=79 复核失败：no-converge periErr=403.2 peri=514.2 面差=1.619 v∞=0.813 corr=15.9 evals=33
+T+763 [sys] 转移窗口：滑行 246.0 分钟后点火，飞行时间 100 h，Δv 3377 m/s，v∞ 0.855，预测近月点 109 km
+T+15524 [bad] 生成模式：TLI：S-IVB 推进剂不足 —— 剩余 55.72 t（全堆质量 122.1 t），这条转移需要 Δv 3377 m/s，而剩余推进剂最多只能给 2533 m/s
+T+15524 [bad] 生成模式：TLI：S-IVB 推进剂不足 —— 剩余 55.72 t（全堆质量 122.1 t），这条转移需要 Δv 3377 m/s，而剩余推进剂最多只能给 2533 m/s
+
+--- fail: ✘ 自动演示中止：生成模式失败 —— TLI：S-IVB 推进剂不足 —— 剩余 55.72 t（全堆质量 122.1 t），这条转移需要 Δv 3377 m/s，而剩余推进剂最多只能给 2533 m/s  t=15524 frames=1711 active=false index=6 step=执行 TLI 点火（有限推力：真实 S-IVB 燃烧 347 s，Δv ≈ 3.05 km/s） stopAt=null stuck=null

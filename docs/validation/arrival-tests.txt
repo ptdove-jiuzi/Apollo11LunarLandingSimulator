@@ -1,0 +1,51 @@
+地月转移到达几何验证台 —— 受管 Node，真实引力（地球/月球 μ+J2 + 太阳第三体）
+到达目标：真近月点 111 km、到达面含着陆点（≤0.1°）、v∞ ∈ 0.83~0.90
+
+=== T1  lunarAimError 实积分到真近月点（不是 20k 瞬时根数） ===
+  [PASS] T1a 近月端构造：真近点 ≈ 111 km（±1）   (peri=110.742 km, 入点 ν=-111.9°, 偏差=物理潮汐)
+  [PASS] T1a 近月端构造：v∞ ≈ 0.85（±0.01）   (v∞=0.8505)
+   20k 入点（ν=-128.4°, 飞行 5.30 h）：瞬时根数假近点=111.000 km，真积分近点=98.796 km，lunarAimError=98.796 km
+  [PASS] T1b 20k 瞬时根数是**假近点**（与真值差 > 5 km）   (|真−假|=12.20 km)
+  [PASS] T1b lunarAimError 与独立 closestApproach 一致（< 0.5 km）   (|Δ|=0.0000 km)
+
+=== T2  lunarAimPoint 全模型到达瞄准（tof=98h, v∞目标=0.87） ===
+   求解用时 21701 ms
+  [PASS] T2：未失败（有解）   (failed=undefined)
+   解：peri=108.13 km  plane=0.0188°  v∞=0.8439  corr=10.53 m/s  (it=13, ev=53)
+  [PASS] T2：近月点 111 ± 20 km   (peri=108.13)
+  [PASS] T2：到达面 ≤ 0.1°   (plane=0.0188°)
+  [PASS] T2：v∞ ∈ [0.83, 0.90]   (v∞=0.8439)
+  [PASS] T2：全模型修正 ≤ 20 m/s   (corr=10.53 m/s)
+  [PASS] T2：返回结构含 v1/aim/tArr/T/half/orbit   (缺=)
+  [PASS] T2：aim.cut 供 startFiniteManeuver TLI 用   (T=651.4 s, half=325.7 s)
+  [PASS] T2：关键量有限（无 NaN/Inf）   (v1=[-9.194,5.256,2.692])
+  [PASS] T2：smallCorrection 记录解析种子 vs 数值解   (解析种子残差 patchedErr=0.1298 km/s, 修正=10.53 m/s)
+
+=== T3  可行窗口扫描（tof 92h / 98h 都应收敛） ===
+   tof 92h (18751 ms)：peri=112.36 plane=0.0010° v∞=0.8668 corr=11.75 m/s
+  [PASS] T3 tof 92h 收敛且达标   (peri=112.36, plane=0.0010, v∞=0.8668)
+   tof 98h (18457 ms)：peri=108.13 plane=0.0188° v∞=0.8439 corr=10.53 m/s
+  [PASS] T3 tof 98h 收敛且达标   (peri=108.13, plane=0.0188, v∞=0.8439)
+
+=== T4  不可行窗口必须明确 failed（tof=64h，v∞ 物理上≈1.29） ===
+   (26931 ms) 结果：{"failed":"no-converge","vInf":1.2901044517201106,"peri":395.0338390683005,"corr":0.019999999999991157}
+  [PASS] T4 tof 64h：明确 failed   (failed=no-converge)
+  [PASS] T4 tof 64h：v∞ 未被"偷偷提高/降低"到窗口内   (v∞=1.2901)
+
+=== T5  非法参数 / 极端输入：返回 failed 且不抛异常、不 null deref ===
+  [PASS] T5 tof=0：不抛异常且返回对象   (返回 "tof")
+  [PASS] T5 tof=0：明确 failed   (返回 "tof")
+  [PASS] T5 tof=300（<600）：不抛异常且返回对象   (返回 "tof")
+  [PASS] T5 tof=300（<600）：明确 failed   (返回 "tof")
+  [PASS] T5 tof=NaN：不抛异常且返回对象   (返回 "tof")
+  [PASS] T5 tof=NaN：明确 failed   (返回 "tof")
+  [PASS] T5 tof=null：不抛异常且返回对象   (返回 "tof")
+  [PASS] T5 tof=null：明确 failed   (返回 "tof")
+  [PASS] T5 v∞ 目标=5（不可达）：不抛异常且返回对象   (返回 "no-converge")
+  [PASS] T5 v∞ 目标=5（不可达）：明确 failed   (返回 "no-converge")
+  [PASS] T5 近月点=-500 km（月面以下，非法）：不抛异常且返回对象   (返回 "no-converge")
+  [PASS] T5 近月点=-500 km（月面以下，非法）：明确 failed   (返回 "no-converge")
+  [PASS] T5 近月点=5000 km（合法但高）：不抛异常且返回对象   (返回 "ok", peri=5001.9)
+  [PASS] T5 站点纬度 89.9°：不抛异常且返回对象   (返回 "no-converge")
+
+===== 汇总：31 通过 / 0 失败 =====

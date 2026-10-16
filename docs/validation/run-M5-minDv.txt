@@ -1,0 +1,24 @@
+T+677 [sys] [WIN] tof=100h k=79 wait=4180s dv=3141m/s vInfE=0.872 score=3.1439
+T+677 [sys] [WIN] tof=100h k=180 wait=9524s dv=3151m/s vInfE=0.873 score=3.1532
+T+677 [sys] [WIN] tof=100h k=80 wait=4233s dv=3152m/s vInfE=0.872 score=3.1543
+T+677 [sys] [WIN] tof=100h k=280 wait=14816s dv=3157m/s vInfE=0.873 score=3.1598
+T+677 [sys] [WIN] tof=96h k=279 wait=14763s dv=3141m/s vInfE=0.892 score=3.1627
+T+677 [sys] [WIN] tof=96h k=179 wait=9471s dv=3145m/s vInfE=0.892 score=3.1664
+T+677 [sys] [WIN] tof=96h k=379 wait=20054s dv=3147m/s vInfE=0.893 score=3.1698
+T+677 [sys] [WIN] tof=96h k=380 wait=20107s dv=3149m/s vInfE=0.892 score=3.1713
+T+677 [sys] [WIN] tof=96h k=480 wait=25398s dv=3150m/s vInfE=0.893 score=3.1726
+T+677 [sys] [WIN] tof=96h k=79 wait=4180s dv=3152m/s vInfE=0.892 score=3.1731
+T+677 [sys] 转移窗口候选 100h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 100h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 100h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 100h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 96h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 96h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 96h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 96h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 96h 复核失败：no-converge
+T+677 [sys] 转移窗口候选 96h 复核失败：no-converge
+T+677 [bad] 生成模式：TLI：80~112 h 内没有可行的地月转移窗口（lunarAimPoint 均无法收敛到 111 km / v∞ 0.83~0.90）
+T+677 [bad] 生成模式：TLI：80~112 h 内没有可行的地月转移窗口（lunarAimPoint 均无法收敛到 111 km / v∞ 0.83~0.90）
+
+--- fail: ✘ 自动演示中止：生成模式失败 —— TLI：80~112 h 内没有可行的地月转移窗口（lunarAimPoint 均无法收敛到 111 km / v∞ 0.83~0.90）  t=677 frames=1018 active=false index=4 step=求解地月转移轨道（兰伯特 + 全模型复核，飞行时间 88~100 小时） stopAt=undefined stuck=null

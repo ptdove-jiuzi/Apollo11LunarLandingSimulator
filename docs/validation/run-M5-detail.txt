@@ -1,0 +1,24 @@
+T+677 [sys] [WIN] tof=100h k=79 wait=4180s dv=3141m/s vInfE=0.872 score=3.1439
+T+677 [sys] [WIN] tof=100h k=180 wait=9524s dv=3151m/s vInfE=0.873 score=3.1532
+T+677 [sys] [WIN] tof=100h k=80 wait=4233s dv=3152m/s vInfE=0.872 score=3.1543
+T+677 [sys] [WIN] tof=100h k=280 wait=14816s dv=3157m/s vInfE=0.873 score=3.1598
+T+677 [sys] [WIN] tof=96h k=279 wait=14763s dv=3141m/s vInfE=0.892 score=3.1627
+T+677 [sys] [WIN] tof=96h k=179 wait=9471s dv=3145m/s vInfE=0.892 score=3.1664
+T+677 [sys] [WIN] tof=96h k=379 wait=20054s dv=3147m/s vInfE=0.893 score=3.1698
+T+677 [sys] [WIN] tof=96h k=380 wait=20107s dv=3149m/s vInfE=0.892 score=3.1713
+T+677 [sys] [WIN] tof=96h k=480 wait=25398s dv=3150m/s vInfE=0.893 score=3.1726
+T+677 [sys] [WIN] tof=96h k=79 wait=4180s dv=3152m/s vInfE=0.892 score=3.1731
+T+677 [sys] 转移窗口候选 100h k=79 复核失败：no-converge periErr=186.0 peri=297.0 面差=0.756 v∞=0.825 corr=17.8 evals=122
+T+677 [sys] 转移窗口候选 100h k=180 复核失败：no-converge periErr=-11.4 peri=99.6 面差=0.041 v∞=0.827 corr=20.0 evals=121
+T+677 [sys] 转移窗口候选 100h k=80 复核失败：no-converge periErr=184.1 peri=295.1 面差=0.707 v∞=0.825 corr=17.7 evals=122
+T+677 [sys] 转移窗口候选 100h k=280 复核失败：no-converge periErr=-13.9 peri=97.1 面差=0.004 v∞=0.828 corr=18.6 evals=30
+T+677 [sys] 转移窗口候选 96h k=279 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.009 v∞=0.858 corr=18.8 evals=121
+T+677 [sys] 转移窗口候选 96h k=179 复核失败：no-converge periErr=22.5 peri=133.5 面差=0.376 v∞=0.844 corr=19.4 evals=61
+T+677 [sys] 转移窗口候选 96h k=379 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.017 v∞=0.859 corr=16.2 evals=122
+T+677 [sys] 转移窗口候选 96h k=380 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.000 v∞=0.870 corr=15.5 evals=122
+T+677 [sys] 转移窗口候选 96h k=480 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.000 v∞=0.870 corr=18.5 evals=59
+T+677 [sys] 转移窗口候选 96h k=79 复核失败：no-converge periErr=122.3 peri=233.3 面差=0.543 v∞=0.842 corr=19.1 evals=21
+T+677 [bad] 生成模式：TLI：80~112 h 内没有可行的地月转移窗口（lunarAimPoint 均无法收敛到 111 km / v∞ 0.83~0.90）
+T+677 [bad] 生成模式：TLI：80~112 h 内没有可行的地月转移窗口（lunarAimPoint 均无法收敛到 111 km / v∞ 0.83~0.90）
+
+--- fail: ✘ 自动演示中止：生成模式失败 —— TLI：80~112 h 内没有可行的地月转移窗口（lunarAimPoint 均无法收敛到 111 km / v∞ 0.83~0.90）  t=677 frames=1018 active=false index=4 step=求解地月转移轨道（兰伯特 + 全模型复核，飞行时间 88~100 小时） stopAt=undefined stuck=null

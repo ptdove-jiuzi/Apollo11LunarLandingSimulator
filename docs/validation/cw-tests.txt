@@ -1,0 +1,115 @@
+CW 交会终端验证台 —— 受管 Node，真实引力 + 有限推力，无演示兜底
+
+=== 圆轨道  (dt=5 s, 目标 111×111 km, 初始后方 30000 m) ===
+  初始：后方距离 30000 m，相对速度 26.43 m/s，推进剂 3000 kg
+    t=5s  d=29999.7m  rv=26.43m/s  phase=coelliptic  prop=3000
+    t=2505s  d=25345.3m  rv=22.45m/s  phase=terminal  prop=2979
+    t=5005s  d=20338.3m  rv=18.05m/s  phase=terminal  prop=2961
+    t=7505s  d=15331.3m  rv=13.66m/s  phase=terminal  prop=2943
+    t=10005s  d=10324.2m  rv=9.33m/s  phase=terminal  prop=2926
+    t=12505s  d=5317.0m  rv=5.10m/s  phase=terminal  prop=2909
+    t=15005s  d=1268.0m  rv=1.37m/s  phase=terminal  prop=2896
+    t=17505s  d=299.2m  rv=0.30m/s  phase=terminal  prop=2892
+  结束：phase=done  d=134.8m  rv=0.125m/s  总耗油=108.4kg  终端耗油=108.4kg  用时=19490s
+  [PASS] 圆轨道：进入完成状态   (phase=done)
+  [PASS] 圆轨道：收到 ≤150 m 且 rv ≤1 m/s   (d=134.8m rv=0.125m/s)
+  [PASS] 圆轨道：连续保持 ≥300 s   (hold=300s)
+  [PASS] 圆轨道：终端推进剂 ≤150 kg   (108.4 kg)
+  [PASS] 圆轨道：100 m 内 rv < 0.2 m/s   (进入 100 m=false  100m 内 maxRv=0.000m/s)
+  [PASS] 圆轨道：重复同 t 不重复脉冲   (burn 违规=0 累加违规=0)
+  [PASS] 圆轨道：目标航天器不被控制   (目标最大油门指令=0.000)
+  [PASS] 圆轨道：目标轨道保持   (近110.2 远111.4 km)
+  距离包络（每 2 000 s 窗口最大值，m）：30000 → 26346 → 22341 → 18336 → 14330 → 10324 → 6318 → 2413 → 684 → 236
+  [PASS] 圆轨道：距离包络单调下降   (最大回升 0.0 m)
+
+=== 111×117 椭圆  (dt=5 s, 目标 111×117 km, 初始后方 30000 m) ===
+  初始：后方距离 30000 m，相对速度 26.45 m/s，推进剂 3000 kg
+    t=5s  d=29999.7m  rv=26.45m/s  phase=coelliptic  prop=3000
+    t=2505s  d=25345.2m  rv=22.36m/s  phase=terminal  prop=2979
+    t=5005s  d=20338.4m  rv=17.98m/s  phase=terminal  prop=2961
+    t=7505s  d=15331.4m  rv=13.67m/s  phase=terminal  prop=2943
+    t=10005s  d=10324.3m  rv=9.29m/s  phase=terminal  prop=2926
+    t=12505s  d=5317.2m  rv=5.09m/s  phase=terminal  prop=2909
+    t=15005s  d=1268.1m  rv=1.38m/s  phase=terminal  prop=2896
+    t=17505s  d=299.2m  rv=0.30m/s  phase=terminal  prop=2892
+  结束：phase=done  d=134.9m  rv=0.133m/s  总耗油=108.3kg  终端耗油=108.3kg  用时=19490s
+  [PASS] 111×117 椭圆：进入完成状态   (phase=done)
+  [PASS] 111×117 椭圆：收到 ≤150 m 且 rv ≤1 m/s   (d=134.9m rv=0.133m/s)
+  [PASS] 111×117 椭圆：连续保持 ≥300 s   (hold=300s)
+  [PASS] 111×117 椭圆：终端推进剂 ≤150 kg   (108.3 kg)
+  [PASS] 111×117 椭圆：100 m 内 rv < 0.2 m/s   (进入 100 m=false  100m 内 maxRv=0.000m/s)
+  [PASS] 111×117 椭圆：重复同 t 不重复脉冲   (burn 违规=0 累加违规=0)
+  [PASS] 111×117 椭圆：目标航天器不被控制   (目标最大油门指令=0.000)
+  [PASS] 111×117 椭圆：目标轨道保持   (近111.3 远116.3 km)
+  距离包络（每 2 000 s 窗口最大值，m）：30000 → 26346 → 22341 → 18336 → 14330 → 10324 → 6319 → 2413 → 684 → 236
+  [PASS] 111×117 椭圆：距离包络单调下降   (最大回升 0.0 m)
+
+=== 近距离保持(100m)  (dt=5 s, 目标 111×111 km, 初始后方 100 m) ===
+  初始：后方距离 100 m，相对速度 0.09 m/s，推进剂 3000 kg
+    t=5s  d=100.0m  rv=0.09m/s  phase=coelliptic  prop=3000
+  结束：phase=done  d=92.5m  rv=0.094m/s  总耗油=0.1kg  终端耗油=0.1kg  用时=315s
+  [PASS] 近距离保持(100m)：进入完成状态   (phase=done)
+  [PASS] 近距离保持(100m)：收到 ≤150 m 且 rv ≤1 m/s   (d=92.5m rv=0.094m/s)
+  [PASS] 近距离保持(100m)：连续保持 ≥300 s   (hold=310s)
+  [PASS] 近距离保持(100m)：终端推进剂 ≤150 kg   (0.1 kg)
+  [PASS] 近距离保持(100m)：100 m 内 rv < 0.2 m/s   (进入 100 m=true  100m 内 maxRv=0.095m/s)
+  [PASS] 近距离保持(100m)：重复同 t 不重复脉冲   (burn 违规=0 累加违规=0)
+  [PASS] 近距离保持(100m)：目标航天器不被控制   (目标最大油门指令=0.000)
+  [PASS] 近距离保持(100m)：目标轨道保持   (近110.9 远111.1 km)
+  距离包络（每 2 000 s 窗口最大值，m）：100
+  [PASS] 近距离保持(100m)：距离包络单调下降   (最大回升 0.0 m)
+
+=== 圆轨道(细步长)  (dt=2 s, 目标 111×111 km, 初始后方 30000 m) ===
+  初始：后方距离 30000 m，相对速度 26.43 m/s，推进剂 3000 kg
+    t=2s  d=29999.7m  rv=26.43m/s  phase=coelliptic  prop=3000
+    t=2502s  d=25337.9m  rv=22.44m/s  phase=terminal  prop=2979
+    t=5002s  d=20335.3m  rv=18.05m/s  phase=terminal  prop=2961
+    t=7502s  d=15332.5m  rv=13.66m/s  phase=terminal  prop=2943
+    t=10002s  d=10329.5m  rv=9.33m/s  phase=terminal  prop=2926
+    t=12502s  d=5326.3m  rv=5.11m/s  phase=terminal  prop=2909
+    t=15002s  d=1272.3m  rv=1.38m/s  phase=terminal  prop=2895
+    t=17502s  d=299.9m  rv=0.30m/s  phase=terminal  prop=2892
+  结束：phase=done  d=134.8m  rv=0.124m/s  总耗油=108.6kg  终端耗油=108.6kg  用时=19492s
+  [PASS] 圆轨道(细步长)：进入完成状态   (phase=done)
+  [PASS] 圆轨道(细步长)：收到 ≤150 m 且 rv ≤1 m/s   (d=134.8m rv=0.124m/s)
+  [PASS] 圆轨道(细步长)：连续保持 ≥300 s   (hold=300s)
+  [PASS] 圆轨道(细步长)：终端推进剂 ≤150 kg   (108.6 kg)
+  [PASS] 圆轨道(细步长)：100 m 内 rv < 0.2 m/s   (进入 100 m=false  100m 内 maxRv=0.000m/s)
+  [PASS] 圆轨道(细步长)：重复同 t 不重复脉冲   (burn 违规=0 累加违规=0)
+  [PASS] 圆轨道(细步长)：目标航天器不被控制   (目标最大油门指令=0.000)
+  [PASS] 圆轨道(细步长)：目标轨道保持   (近110.2 远111.4 km)
+  距离包络（每 2 000 s 窗口最大值，m）：30000 → 26338 → 22336 → 18334 → 14332 → 10329 → 6327 → 2422 → 686 → 237
+  [PASS] 圆轨道(细步长)：距离包络单调下降   (最大回升 0.0 m)
+
+=== 圆轨道(粗步长)  (dt=10 s, 目标 111×111 km, 初始后方 30000 m) ===
+  初始：后方距离 30000 m，相对速度 26.43 m/s，推进剂 3000 kg
+    t=10s  d=29999.7m  rv=26.43m/s  phase=coelliptic  prop=3000
+    t=2510s  d=25357.7m  rv=22.47m/s  phase=terminal  prop=2979
+    t=5010s  d=20343.3m  rv=18.06m/s  phase=terminal  prop=2961
+    t=7510s  d=15329.2m  rv=13.67m/s  phase=terminal  prop=2943
+    t=10010s  d=10315.4m  rv=9.33m/s  phase=terminal  prop=2926
+    t=12510s  d=5301.6m  rv=5.10m/s  phase=terminal  prop=2910
+    t=15010s  d=1261.1m  rv=1.37m/s  phase=terminal  prop=2896
+    t=17510s  d=298.0m  rv=0.30m/s  phase=terminal  prop=2893
+  结束：phase=done  d=134.7m  rv=0.126m/s  总耗油=108.0kg  终端耗油=108.0kg  用时=19490s
+  [PASS] 圆轨道(粗步长)：进入完成状态   (phase=done)
+  [PASS] 圆轨道(粗步长)：收到 ≤150 m 且 rv ≤1 m/s   (d=134.7m rv=0.126m/s)
+  [PASS] 圆轨道(粗步长)：连续保持 ≥300 s   (hold=300s)
+  [PASS] 圆轨道(粗步长)：终端推进剂 ≤150 kg   (108.0 kg)
+  [PASS] 圆轨道(粗步长)：100 m 内 rv < 0.2 m/s   (进入 100 m=false  100m 内 maxRv=0.000m/s)
+  [PASS] 圆轨道(粗步长)：重复同 t 不重复脉冲   (burn 违规=0 累加违规=0)
+  [PASS] 圆轨道(粗步长)：目标航天器不被控制   (目标最大油门指令=0.000)
+  [PASS] 圆轨道(粗步长)：目标轨道保持   (近110.2 远111.4 km)
+  距离包络（每 2 000 s 窗口最大值，m）：30000 → 26360 → 22349 → 18338 → 14326 → 10315 → 6304 → 2399 → 681 → 236
+  [PASS] 圆轨道(粗步长)：距离包络单调下降   (最大回升 0.0 m)
+
+=== 定时短脉冲精度（chooseStep/updateBurn 末步修复） ===
+  [PASS] 脉冲 0.02 m/s（dt=5s, T=0.0072s）   (实测 0.0200 m/s, 相对误差 0.00%)
+  [PASS] 脉冲 0.1 m/s（dt=5s, T=0.0361s）   (实测 0.1000 m/s, 相对误差 0.00%)
+  [PASS] 脉冲 1 m/s（dt=5s, T=0.3608s）   (实测 1.0000 m/s, 相对误差 0.00%)
+  [PASS] 脉冲 50 m/s（dt=5s, T=18.0375s）   (实测 50.4029 m/s, 相对误差 0.81%)
+  [PASS] 脉冲 1 m/s（dt=1s, T=0.3608s）   (实测 1.0000 m/s, 相对误差 0.00%)
+  [PASS] 脉冲 1 m/s（dt=10s, T=0.3608s）   (实测 1.0000 m/s, 相对误差 0.00%)
+  [PASS] 脉冲 50 m/s（dt=1s, T=18.0375s）   (实测 50.4029 m/s, 相对误差 0.81%)
+
+===== 汇总：52 通过 / 0 失败 =====

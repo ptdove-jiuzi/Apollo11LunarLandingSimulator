@@ -1,0 +1,8 @@
+✅ 轨迹已写入 D:\AIUSE\workbuddy\阿波罗11号模拟器\outputs\route08\gate\apollo11\webdata\traj\M3.json  (10 KB, 22 样本, 4 事件)
+
+--- M3 偏差报告（对照真实阿波罗 11 号）---
+  末端 t = 361216.2 s (100.34 h)
+
+--- 闸门 ---
+
+★ 生成通过：全部闸门达标

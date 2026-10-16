@@ -1,0 +1,17 @@
+T+780 [sys] [WIN] tof=100h k=77 wait=4074s dv=3144m/s vInfE=0.872 score=3.1463
+T+780 [sys] [WIN] tof=100h k=178 wait=9418s dv=3151m/s vInfE=0.873 score=3.1532
+T+780 [sys] [WIN] tof=100h k=278 wait=14709s dv=3159m/s vInfE=0.873 score=3.1624
+T+780 [sys] [WIN] tof=96h k=277 wait=14656s dv=3141m/s vInfE=0.892 score=3.1627
+T+780 [sys] [WIN] tof=96h k=177 wait=9365s dv=3144m/s vInfE=0.892 score=3.1654
+T+780 [sys] [WIN] tof=96h k=378 wait=20000s dv=3148m/s vInfE=0.892 score=3.1706
+T+780 [sys] [WIN] tof=96h k=77 wait=4074s dv=3150m/s vInfE=0.892 score=3.1718
+T+780 [sys] [WIN] tof=96h k=478 wait=25291s dv=3151m/s vInfE=0.893 score=3.1735
+T+780 [sys] [WIN] tof=100h k=379 wait=20053s dv=3172m/s vInfE=0.873 score=3.1751
+T+780 [sys] [WIN] tof=100h k=479 wait=25343s dv=3177m/s vInfE=0.874 score=3.1808
+T+780 [sys] 转移窗口候选 100h 复核失败：no-converge
+T+780 [sys] 转移窗口候选 100h 复核失败：no-converge
+T+780 [sys] 转移窗口：滑行 245.1 分钟后点火，飞行时间 100 h，Δv 3332 m/s，v∞ 0.855，预测近月点 116 km
+T+15489 [bad] 生成模式：TLI：S-IVB 推进剂不足 —— 剩余 51.55 t（全堆质量 118.0 t），这条转移需要 Δv 3332 m/s，而剩余推进剂最多只能给 2388 m/s
+T+15489 [bad] 生成模式：TLI：S-IVB 推进剂不足 —— 剩余 51.55 t（全堆质量 118.0 t），这条转移需要 Δv 3332 m/s，而剩余推进剂最多只能给 2388 m/s
+
+--- fail: ✘ 自动演示中止：生成模式失败 —— TLI：S-IVB 推进剂不足 —— 剩余 51.55 t（全堆质量 118.0 t），这条转移需要 Δv 3332 m/s，而剩余推进剂最多只能给 2388 m/s  t=15489 frames=1736 active=false index=6 step=执行 TLI 点火（有限推力：真实 S-IVB 燃烧 347 s，Δv ≈ 3.05 km/s） stopAt=null stuck=null

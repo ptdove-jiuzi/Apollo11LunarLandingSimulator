@@ -1,0 +1,24 @@
+T+742 [sys] [WIN] tof=100h k=78 wait=4127s dv=3141m/s vInfE=0.872 score=3.1438
+T+742 [sys] [WIN] tof=100h k=179 wait=9471s dv=3155m/s vInfE=0.873 score=3.1576
+T+742 [sys] [WIN] tof=100h k=279 wait=14762s dv=3157m/s vInfE=0.873 score=3.1605
+T+742 [sys] [WIN] tof=96h k=278 wait=14709s dv=3141m/s vInfE=0.892 score=3.1631
+T+742 [sys] [WIN] tof=96h k=178 wait=9418s dv=3145m/s vInfE=0.892 score=3.1665
+T+742 [sys] [WIN] tof=96h k=378 wait=20000s dv=3145m/s vInfE=0.893 score=3.1671
+T+742 [sys] [WIN] tof=96h k=78 wait=4127s dv=3151m/s vInfE=0.892 score=3.1730
+T+742 [sys] [WIN] tof=100h k=379 wait=20053s dv=3171m/s vInfE=0.874 score=3.1742
+T+742 [sys] [WIN] tof=96h k=479 wait=25343s dv=3153m/s vInfE=0.893 score=3.1753
+T+742 [sys] [WIN] tof=104h k=79 wait=4180s dv=3167m/s vInfE=0.858 score=3.1793
+T+742 [sys] 转移窗口候选 100h k=78 复核失败：no-converge periErr=167.6 peri=278.6 面差=0.685 v∞=0.825 corr=18.5 evals=122
+T+742 [sys] 转移窗口候选 100h k=179 复核失败：no-converge periErr=4.8 peri=115.8 面差=0.118 v∞=0.827 corr=19.8 evals=120
+T+742 [sys] 转移窗口候选 96h k=278 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.012 v∞=0.858 corr=18.5 evals=120
+T+742 [sys] 转移窗口候选 96h k=178 复核失败：no-converge periErr=21.8 peri=132.8 面差=0.349 v∞=0.844 corr=19.8 evals=30
+T+742 [sys] 转移窗口候选 96h k=378 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.000 v∞=0.870 corr=12.3 evals=57
+T+742 [sys] 转移窗口候选 96h k=78 复核失败：no-converge periErr=113.7 peri=224.7 面差=0.541 v∞=0.843 corr=19.5 evals=21
+T+742 [sys] 转移窗口候选 100h k=379 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.036 v∞=0.839 corr=15.4 evals=120
+T+742 [sys] 转移窗口候选 96h k=479 复核失败：no-converge periErr=-110.0 peri=1.0 面差=0.000 v∞=0.870 corr=12.3 evals=48
+T+742 [sys] 转移窗口候选 104h k=79 复核失败：no-converge periErr=401.3 peri=512.3 面差=1.617 v∞=0.813 corr=15.6 evals=120
+T+742 [sys] 转移窗口：滑行 246.0 分钟后点火，飞行时间 100 h，Δv 3359 m/s，v∞ 0.855，预测近月点 118 km
+T+15504 [bad] 生成模式：TLI：瞄准求解失败（no-converge）
+T+15504 [bad] 生成模式：TLI：瞄准求解失败（no-converge）
+
+--- fail: ✘ 自动演示中止：生成模式失败 —— TLI：瞄准求解失败（no-converge）  t=15504 frames=1680 active=false index=6 step=执行 TLI 点火（有限推力：真实 S-IVB 燃烧 347 s，Δv ≈ 3.05 km/s） stopAt=null stuck=null

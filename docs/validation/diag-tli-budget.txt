@@ -1,0 +1,60 @@
+t_ign = 22075.431 s   tof = 100 h
+
+实飞精确停：t = 22075.431130 s（过冲 0.000000 s）
+  r=6065.9,2030.7,1463.7  |v|=7.793487
+
+规划态 |Δr| vs 实飞 = 2.8078 km  |Δv| = 3.331 m/s
+
+=== 两个 aim ===
+A) 实飞态上重解（burnTLI 现在做的） → ✔ peri=117.83 km  plane=0.0302°  v∞=0.8566  dv=3681 m/s  corr=19.61 m/s  T=400.7 s
+B) 规划态上解（solveTLI 选中的 pick.aim） → ✔ peri=115.95 km  plane=0.0093°  v∞=0.8565  dv=3680 m/s  corr=19.50 m/s  T=400.7 s
+
+=== 用「实飞态 aim」跑预算组合 ===
+[默认（现状）]
+  ✘ 默认（现状）  (41.6 s, evals A=60 B=120)
+      T=429.72 s  a=-0.091°  b=-1.112°  peri=132.33 km (err 21.33)  plane=0.0134°  v∞=0.8555  corrEq=15.72 m/s
+      stageA |d|=214.48 km  T=430.38 s
+      failed=no-converge
+[A: tries 3 / evals 150]
+  ✔ A: tries 3 / evals 150  (45.1 s, evals A=109 B=120)
+      T=429.90 s  a=-0.006°  b=-1.181°  peri=119.65 km (err -)  plane=0.0055°  v∞=0.8562  corrEq=9.49 m/s
+      stageA |d|=57.16 km  T=430.31 s
+[B: 只加 B 预算 400/150]
+  ✔ B: 只加 B 预算 400/150  (50.6 s, evals A=60 B=149)
+      T=429.71 s  a=-0.093°  b=-1.112°  peri=115.37 km (err -)  plane=0.0025°  v∞=0.8554  corrEq=15.79 m/s
+      stageA |d|=214.48 km  T=430.38 s
+[C: A+B 都加]
+  ✔ C: A+B 都加  (56.1 s, evals A=109 B=137)
+      T=429.90 s  a=-0.007°  b=-1.181°  peri=115.46 km (err -)  plane=0.0028°  v∞=0.8562  corrEq=9.51 m/s
+      stageA |d|=57.16 km  T=430.31 s
+[D: C + tries 5 / A evals 300]
+  ✔ D: C + tries 5 / A evals 300  (56.8 s, evals A=109 B=137)
+      T=429.90 s  a=-0.007°  b=-1.181°  peri=115.46 km (err -)  plane=0.0028°  v∞=0.8562  corrEq=9.51 m/s
+      stageA |d|=57.16 km  T=430.31 s
+
+=== 用「规划态 aim」跑预算组合 ===
+[默认（现状）]
+  ✘ 默认（现状）  (46.5 s, evals A=60 B=121)
+      T=430.28 s  a=0.145°  b=-1.215°  peri=581.48 km (err 470.48)  plane=0.9514°  v∞=0.8592  corrEq=2.25 m/s
+      stageA |d|=90.87 km  T=430.32 s
+      failed=no-converge
+[A: tries 3 / evals 150]
+  ✘ A: tries 3 / evals 150  (46.5 s, evals A=69 B=121)
+      T=430.27 s  a=0.148°  b=-1.233°  peri=517.41 km (err 406.41)  plane=0.7868°  v∞=0.8590  corrEq=1.88 m/s
+      stageA |d|=57.49 km  T=430.31 s
+      failed=no-converge
+[B: 只加 B 预算 400/150]
+  ✘ B: 只加 B 预算 400/150  (90.8 s, evals A=60 B=257)
+      T=430.28 s  a=0.145°  b=-1.215°  peri=581.48 km (err 470.48)  plane=0.9514°  v∞=0.8592  corrEq=2.25 m/s
+      stageA |d|=90.87 km  T=430.32 s
+      failed=no-converge
+[C: A+B 都加]
+  ✘ C: A+B 都加  (87.0 s, evals A=69 B=245)
+      T=430.27 s  a=0.148°  b=-1.233°  peri=517.41 km (err 406.41)  plane=0.7868°  v∞=0.8590  corrEq=1.88 m/s
+      stageA |d|=57.49 km  T=430.31 s
+      failed=no-converge
+[D: C + tries 5 / A evals 300]
+  ✘ D: C + tries 5 / A evals 300  (90.1 s, evals A=69 B=245)
+      T=430.27 s  a=0.148°  b=-1.233°  peri=517.41 km (err 406.41)  plane=0.7868°  v∞=0.8590  corrEq=1.88 m/s
+      stageA |d|=57.49 km  T=430.31 s
+      failed=no-converge

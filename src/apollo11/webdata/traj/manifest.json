@@ -1,0 +1,32 @@
+{
+ "available": [
+  "M1",
+  "M2",
+  "M3",
+  "M4",
+  "M5"
+ ],
+ "info": {
+  "M1": {
+   "samples": 534,
+   "spanS": 711
+  },
+  "M2": {
+   "samples": 4119,
+   "spanS": 283851
+  },
+  "M3": {
+   "samples": 22,
+   "spanS": 361216
+  },
+  "M4": {
+   "samples": 629,
+   "spanS": 365873
+  },
+  "M5": {
+   "samples": 7003,
+   "spanS": 678421
+  }
+ },
+ "generated": "2026-10-15"
+}
