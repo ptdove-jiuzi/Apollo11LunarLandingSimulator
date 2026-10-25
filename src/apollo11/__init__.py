@@ -6,6 +6,6 @@
 功能，代码本体全部自行实现。
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __app_name__ = "Apollo 11 Mission Simulator"
 __app_name_cn__ = "阿波罗11号登月模拟器"

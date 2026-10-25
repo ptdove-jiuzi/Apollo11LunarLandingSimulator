@@ -239,6 +239,12 @@
     // 换任务时如果自动演示还在跑，先把它停掉 —— 否则演示会拿着上一条
     // 任务的脚本去飞新任务的飞行器。
     if (APL.Demo && APL.Demo.isActive()) APL.Demo.stop('manual');
+    // 回放（含还在加载中的）也必须一起取消：否则 mode 仍是 replay、
+    // driverExternal 仍是 true，主循环不推进物理，旧回放会一直往新任务里写状态。
+    if (APL.Replay && APL.Replay.state && APL.Replay.state.abort) {
+      var rpS = APL.Replay.state;
+      if (rpS.active || rpS.loading || App.mode === 'replay' || App.driverExternal) rpS.abort();
+    }
     var sc = buildScenario(id);
     App.world = sc.world;
     App.craft = sc.craft;
@@ -1341,6 +1347,12 @@
 
   function loadGame() {
     function apply(data) {
+      // 读档会整体换掉世界：回放必须一起中止，否则 mode 仍是 replay、
+      // 主循环不推进物理，旧回放还会继续往刚读进来的世界上写样本。
+      if (APL.Replay && APL.Replay.state && APL.Replay.state.abort) {
+        var rpS = APL.Replay.state;
+        if (rpS.active || rpS.loading || App.mode === 'replay' || App.driverExternal) rpS.abort();
+      }
       var sc = buildScenario(data.mission);
       App.world = sc.world;
       App.mission = sc.world.mission;
@@ -1356,6 +1368,17 @@
         if (!App.craft) App.craft = c;
       });
       App.craft = App.world.crafts[0];
+      // 存档里记了倍率，读档要恢复（否则读回来的 100× 会悄悄变成 1×）
+      if (data.warp) {
+        App.world.warp = data.warp;
+        App.warpIndex = warpIndexFor(data.warp);
+      }
+      // 恢复"另一台飞行器"的引用（否则读档后【切换飞行器】【对接】都报"没有可切换的飞行器"）
+      for (var ci = 0; ci < App.world.crafts.length; ci++) {
+        var cc = App.world.crafts[ci];
+        if (cc === App.craft) continue;
+        if ((cc.flags && cc.flags.isLM) || cc.id === 'LM' || !App.lm) App.lm = cc;
+      }
       App.objectives = data.objectives || {};
       logLine('ok', L('读档完成，任务时间 ', 'Game loaded, mission time ') + M.fmtTime(data.t));
       refreshAll();

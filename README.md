@@ -21,7 +21,7 @@
 
 | 方式 | 说明 |
 |---|---|
-| **① 直接玩（推荐）** | 下载 [`download/Apollo11LunarLanding.exe`](download/Apollo11LunarLanding.exe)（**8.7 MB，Windows 单文件，免安装、免运行库，双击即玩**）。第一次运行会解压到系统临时目录并打开一个应用窗口。 |
+| **① 直接玩（推荐）** | 下载 [`download/Apollo11LunarLanding.exe`](download/Apollo11LunarLanding.exe)（**15.4 MB，Windows 单文件，免安装、免运行库，双击即玩**）。第一次运行会解压到系统临时目录并打开一个应用窗口。 |
 | ② 从源码运行 | 只需 **Python 3.8+** 和任意现代浏览器（**零依赖**）：`python run.py` |
 | ③ 自己打包成 EXE | `build.bat`（需要 `pip install pyinstaller pywebview`），产物在 `dist/` |
 | ④ GitHub Releases | 上传仓库后，把 `download/` 里的 EXE 作为 Release 附件放一份，别人就能从 Releases 页直接下载（正文可直接用 [`RELEASE_NOTES.md`](RELEASE_NOTES.md)）。 |
@@ -201,7 +201,7 @@ replica with its DSKY panel.
 
 | Option | Notes |
 |---|---|
-| **① Play it (recommended)** | Download [`download/Apollo11LunarLanding.exe`](download/Apollo11LunarLanding.exe) — **8.7 MB, single Windows executable, no installer, no runtimes, just double-click.** First run extracts to a temp folder and opens an app window. |
+| **① Play it (recommended)** | Download [`download/Apollo11LunarLanding.exe`](download/Apollo11LunarLanding.exe) — **15.4 MB, single Windows executable, no installer, no runtimes, just double-click.** First run extracts to a temp folder and opens an app window. |
 | ② Run from source | Only **Python 3.8+** and a modern browser (**zero dependencies**): `python run.py` |
 | ③ Build your own EXE | `build.bat` (needs `pip install pyinstaller pywebview`), output in `dist/` |
 | ④ GitHub Releases | After pushing, also attach the EXE to a Release so people can download from the Releases page (you can paste [`RELEASE_NOTES.md`](RELEASE_NOTES.md) as the release body). |

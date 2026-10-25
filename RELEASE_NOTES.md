@@ -1,6 +1,24 @@
-# Apollo 11 Lunar Landing Simulator v1.0.0
+# Apollo 11 Lunar Landing Simulator v1.0.1
 
 **简体中文** · [English below](#english)
+
+## v1.0.1 修了什么
+
+这一版没有加新功能，只修 bug —— 全部由一轮新的边界自检（`tools/bughunt2.js`，30 项）发现并回归验证：
+
+1. **自动演示看不到登月**（严重）：回放镜头永远跟着指令舱，M5 的下降/着陆/上升段
+   观众只看到 CSM 绕着月球转。现在分离后的登月舱会成为主角，下降、着陆、起飞全程跟拍，
+   拖尾也改为绘制登月舱自己的轨迹（此前差 380 km）。
+2. **回放中点【开始任务】会卡死物理**：`mode` 仍为 replay、`driverExternal` 仍为 true，
+   主循环不推进时间，旧回放还会往新任务里写状态。现在换任务会先中止回放。
+3. **加载中退出无效**：点了【自动演示】立刻点【退出回放】，两秒后又被拽回回放。
+   现在退出/换任务会作废在途请求。
+4. **回退进度条留下幽灵飞行器**：拖回分离之前，登月舱仍停在月面上。
+   现在样本里不存在的飞行器会被真正移除。
+5. **读档两个问题**：读档后不回退出回放（物理冻住）、`App.lm` 引用丢失
+   （【切换飞行器】【对接】报"没有可切换的飞行器"）。另外补上了存档倍率的恢复。
+6. **轨迹清单过期**：`traj/manifest.json` 里 M5 的样本数/时长是旧值
+   （7003 / 678421 s，实际 6951 / 590800 s），已重新生成。
 
 ## 这是什么
 
@@ -11,7 +29,7 @@
 
 ## 下载
 
-- **Windows 免安装单文件**：`Apollo11LunarLanding.exe`（8.7 MB，双击即玩）
+- **Windows 免安装单文件**：`Apollo11LunarLanding.exe`（15.4 MB，双击即玩）
 - 源码运行（零依赖）：`python src/run.py`
 - 自己打包：`build.bat`
 
@@ -58,6 +76,27 @@ MIT。详细开发记录（每一轮的实测数据、失败原因与修法）�
 
 # English
 
+## What's fixed in v1.0.1
+
+No new features — bug fixes only, all found and re-verified by a new edge-case self-check (`tools/bughunt2.js`, 30 checks):
+
+1. **The auto-demo never showed the landing.** The replay camera always followed the command
+   module, so during M5 you only saw the CSM orbiting the Moon. The separated LM is now the
+   hero craft (descent, touchdown and ascent are followed), and the trail is drawn from the
+   LM's own path (it was off by 380 km before).
+2. **Starting a mission during replay froze physics** (`mode` stayed `replay`,
+   `driverExternal` stayed `true`, and the old replay kept writing into the new world).
+   Switching missions now aborts the replay first.
+3. **"Exit replay" did nothing while the trajectory was still loading** — it re-entered
+   replay a second later. Pending loads are now invalidated.
+4. **Scrubbing backwards left a ghost LM** parked on the lunar surface; crafts absent from
+   the sample are now removed.
+5. **Loading a save had two bugs**: the replay was not aborted (physics frozen) and `App.lm`
+   was lost (the switch-vehicle / dock buttons reported "no other vehicle"). Restoring the
+   saved time-warp was added too.
+6. **Stale trajectory manifest**: M5 reported the old sample count / span (7003 / 678421 s
+   vs the actual 6951 / 590800 s). Regenerated.
+
 A **from-scratch** Apollo 11 full-mission simulator: real physics integrated in real time
 (RK4 with Earth J2, the lunar indirect term and lunar J2, solar perturbations, a Meeus lunar
 ephemeris and IAU lunar rotation), covering the whole profile — liftoff → trans-lunar
@@ -66,7 +105,7 @@ with a **programmable Apollo Guidance Computer (Block II)** replica and its DSKY
 
 ## Download
 
-- **Windows single-file, no install**: `Apollo11LunarLanding.exe` (8.7 MB, double-click to play)
+- **Windows single-file, no install**: `Apollo11LunarLanding.exe` (15.4 MB, double-click to play)
 - From source (zero dependencies): `python src/run.py`
 - Build your own: `build.bat`
 
